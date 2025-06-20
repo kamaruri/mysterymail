@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>疑似メールアプリ</title>
+  <title>サッカー少女の親メールアプリ</title>
   <style>
     body { font-family: sans-serif; padding: 20px; background: #f9f9f9; }
     .mailbox { margin-bottom: 20px; }
@@ -19,14 +19,21 @@
 
   <div class="mailbox">
     <h2>📥 受信メール</h2>
-    <div class="mail">From: admin@inac-kobe.com<br>件名: ご登録ありがとうございます<br>内容: スクールの登録が完了しました。</div>
-    <div class="mail">From: support@inac-kobe.com<br>件名: お問い合わせ受付<br>内容: お問い合わせを受け付けました。</div>
+    <div class="mail">From: info@events.jp<br>件名: イベントのご案内<br>内容: 今月の無料体験イベントの情報をお送りします。</div>
+    <div class="mail">From: hello@newsletter.com<br>件名: 月刊ニュースレター 6月号<br>内容: 最新のセキュリティ情報やアップデートをお届けします。</div>
+    <div class="mail">From: noreply@myfitness.net<br>件名: ジム予約確認<br>内容: 6月21日（火）19:00〜の予約を受け付けました。</div>
+    <div class="mail">From: contact@school-events.org<br>件名: お知らせ：運動会の日程変更<br>内容: 6月24日→6月27日に変更されました。</div>
+    <div class="mail">From: notice@booking-alerts.com<br>件名: ご予約のリマインダー<br>内容: 明日のアポイントメントをご確認ください。</div>
+    <div class="mail">From: reply@newsletterplus.com<br>件名: 今月の特集：注目のセキュリティ対策<br>内容: 読んで役立つ最新情報をお届けしています。</div>
   </div>
 
   <div class="mailbox">
     <h2>📤 送信メール</h2>
-    <div class="mail">To: support@inac-kobe.com<br>件名: 質問です<br>内容: スクールの場所を教えてください。</div>
-    <div class="mail">To: school@inac-kobe.com<br>件名: 申込希望<br>内容: 来週の体験を希望します。</div>
+    <div class="mail">To: inquiry@support.co.jp<br>件名: 登録内容の確認<br>内容: 自分の登録したメールアドレスを教えてください。</div>
+    <div class="mail">To: team@newsletter.jp<br>件名: 購読希望<br>内容: ニュースレターを購読したいです。</div>
+    <div class="mail">To: info@events.jp<br>件名: 体験イベント参加希望<br>内容: 家族3名で参加を希望します。</div>
+    <div class="mail">To: office@myfitness.net<br>件名: 予約のキャンセル依頼<br>内容: 予定が重なったため、予約をキャンセルしたいです。</div>
+    <div class="mail">To: contact@event-newsletter.net<br>件名: 質問：開催日時の変更について<br>内容: イベント開始時間に関する問い合わせです。</div>
   </div>
 
   <div class="mailbox">
@@ -39,13 +46,13 @@
 
   <div id="specialPopup" class="popup">
     <strong>📣 school@inac-kobe.com 宛のメールが送信されました！</strong><br>
-    特別な情報をお届けしました。
-    <br><button onclick="closePopup()">閉じる</button>
+    仮申し込みを受け付けました！<br>
+    <button onclick="closePopup()">閉じる</button>
   </div>
 
   <script>
     function sendMail() {
-      const to = document.getElementById("to").value;
+      const to = document.getElementById("to").value.trim();
       const subject = document.getElementById("subject").value;
       const body = document.getElementById("body").value;
 
@@ -55,8 +62,14 @@
       newMail.innerHTML = `To: ${to}<br>件名: ${subject}<br>内容: ${body}`;
       outbox.appendChild(newMail);
 
-      if (to.trim().toLowerCase() === "school@inac-kobe.com") {
+      if (to.toLowerCase() === "school@inac-kobe.com") {
         document.getElementById("specialPopup").classList.add("active");
+
+        const inbox = document.querySelectorAll('.mailbox')[0];
+        const confirmMail = document.createElement('div');
+        confirmMail.className = 'mail';
+        confirmMail.innerHTML = `From: school@inac-kobe.com<br>件名: サッカースクール仮申し込み完了のお知らせ<br>内容: このたびはサッカースクールへの仮申し込みありがとうございます。<br>担当者より2営業日以内に本申込のご案内をお送りします。<br><br>--<br>INAC神戸レオネッサ スクール事務局`;
+        inbox.prepend(confirmMail);
       }
     }
 
