@@ -101,7 +101,7 @@
       newMail.className = 'mail';
       newMail.innerHTML = `To: ${to}<br>件名: ${subject}<br>内容: ${body}<br><small>送信日時: ${timestamp}</small>`;
       const heading = outbox.querySelector('h2');
-      outbox.insertBefore(newMail, outbox.firstChild);
+　　　 outbox.insertBefore(newMail, heading.nextSibling);
 
       if (to.toLowerCase() === "school@inac-kobe.com") {
         document.getElementById("specialPopup").classList.add("active");
