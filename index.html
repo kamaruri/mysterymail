@@ -2,46 +2,62 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>サッカー少女の親メールアプリ</title>
+  <title>疑似メールアプリ</title>
   <style>
     body { font-family: sans-serif; padding: 20px; background: #f9f9f9; }
+    .tab-buttons { margin-bottom: 10px; }
+    .tab-buttons button { margin-right: 10px; padding: 10px 20px; }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
     .mailbox { margin-bottom: 20px; }
     .mail { border: 1px solid #ccc; padding: 10px; margin-bottom: 5px; background: white; }
     .popup { display: none; position: fixed; top: 30%; left: 30%; padding: 20px; background: #fff8dc; border: 2px solid #f4a460; z-index: 1000; }
     .popup.active { display: block; }
     input, textarea { width: 100%; margin: 5px 0; }
-    button { padding: 5px 10px; }
+    button.send { padding: 5px 10px; }
   </style>
 </head>
 <body>
   <h1>疑似メールアプリ</h1>
   <p><strong>あなたのメールアドレス：</strong> user.fake.7890@example-mail.test</p>
 
-  <div class="mailbox">
-    <h2>📥 受信メール</h2>
-    <div class="mail">From: info@events.jp<br>件名: イベントのご案内<br>内容: 今月の無料体験イベントの情報をお送りします。</div>
-    <div class="mail">From: hello@newsletter.com<br>件名: 月刊ニュースレター 6月号<br>内容: 最新のセキュリティ情報やアップデートをお届けします。</div>
-    <div class="mail">From: noreply@myfitness.net<br>件名: ジム予約確認<br>内容: 6月21日（火）19:00〜の予約を受け付けました。</div>
-    <div class="mail">From: contact@school-events.org<br>件名: お知らせ：運動会の日程変更<br>内容: 6月24日→6月27日に変更されました。</div>
-    <div class="mail">From: notice@booking-alerts.com<br>件名: ご予約のリマインダー<br>内容: 明日のアポイントメントをご確認ください。</div>
-    <div class="mail">From: reply@newsletterplus.com<br>件名: 今月の特集：注目のセキュリティ対策<br>内容: 読んで役立つ最新情報をお届けしています。</div>
+  <div class="tab-buttons">
+    <button onclick="showTab('send')">📤 メール送信</button>
+    <button onclick="showTab('inbox')">📥 受信履歴</button>
+    <button onclick="showTab('outbox')">📤 送信履歴</button>
   </div>
 
-  <div class="mailbox">
-    <h2>📤 送信メール</h2>
-    <div class="mail">To: inquiry@support.co.jp<br>件名: 登録内容の確認<br>内容: 自分の登録したメールアドレスを教えてください。</div>
-    <div class="mail">To: team@newsletter.jp<br>件名: 購読希望<br>内容: ニュースレターを購読したいです。</div>
-    <div class="mail">To: info@events.jp<br>件名: 体験イベント参加希望<br>内容: 家族3名で参加を希望します。</div>
-    <div class="mail">To: office@myfitness.net<br>件名: 予約のキャンセル依頼<br>内容: 予定が重なったため、予約をキャンセルしたいです。</div>
-    <div class="mail">To: contact@event-newsletter.net<br>件名: 質問：開催日時の変更について<br>内容: イベント開始時間に関する問い合わせです。</div>
+  <div id="send" class="tab-content active">
+    <div class="mailbox">
+      <h2>✉️ メール送信</h2>
+      <input type="text" id="to" placeholder="宛先（To）">
+      <input type="text" id="subject" placeholder="件名">
+      <textarea id="body" rows="4" placeholder="本文"></textarea>
+      <button class="send" onclick="sendMail()">送信</button>
+    </div>
   </div>
 
-  <div class="mailbox">
-    <h2>✉️ メール送信</h2>
-    <input type="text" id="to" placeholder="宛先（To）">
-    <input type="text" id="subject" placeholder="件名">
-    <textarea id="body" rows="4" placeholder="本文"></textarea>
-    <button onclick="sendMail()">送信</button>
+  <div id="inbox" class="tab-content">
+    <div class="mailbox" id="inbox-box">
+      <h2>📥 受信メール</h2>
+      <div class="mail">From: info@events.jp<br>件名: イベントのご案内<br>内容: 今月の無料体験イベントの情報をお送りします。</div>
+      <div class="mail">From: hello@newsletter.com<br>件名: 月刊ニュースレター 6月号<br>内容: 最新のセキュリティ情報やアップデートをお届けします。</div>
+      <div class="mail">From: noreply@myfitness.net<br>件名: ジム予約確認<br>内容: 6月21日（火）19:00〜の予約を受け付けました。</div>
+      <div class="mail">From: contact@school-events.org<br>件名: お知らせ：運動会の日程変更<br>内容: 6月24日→6月27日に変更されました。</div>
+      <div class="mail">From: notice@booking-alerts.com<br>件名: ご予約のリマインダー<br>内容: 明日のアポイントメントをご確認ください。</div>
+      <div class="mail">From: reply@newsletterplus.com<br>件名: 今月の特集：注目のセキュリティ対策<br>内容: 読んで役立つ最新情報をお届けしています。</div>
+    </div>
+  </div>
+
+  <div id="outbox" class="tab-content">
+    <div class="mailbox" id="outbox-box">
+      <h2>📤 送信メール</h2>
+      <div class="mail">To: inquiry@support.co.jp<br>件名: 登録内容の確認<br>内容: 自分の登録したメールアドレスを教えてください。</div>
+      <div class="mail">To: team@newsletter.jp<br>件名: 購読希望<br>内容: ニュースレターを購読したいです。</div>
+      <div class="mail">To: info@events.jp<br>件名: 体験イベント参加希望<br>内容: 家族3名で参加を希望します。</div>
+      <div class="mail">To: office@myfitness.net<br>件名: 予約のキャンセル依頼<br>内容: 予定が重なったため、予約をキャンセルしたいです。</div>
+      <div class="mail">To: contact@event-newsletter.net<br>件名: 質問：開催日時の変更について<br>内容: イベント開始時間に関する問い合わせです。</div>
+    </div>
   </div>
 
   <div id="specialPopup" class="popup">
@@ -51,25 +67,37 @@
   </div>
 
   <script>
+    function showTab(tabId) {
+      document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+      document.getElementById(tabId).classList.add('active');
+    }
+
     function sendMail() {
+      const now = new Date();
+      const timestamp = now.toLocaleString('ja-JP', { hour12: false });
       const to = document.getElementById("to").value.trim();
       const subject = document.getElementById("subject").value;
       const body = document.getElementById("body").value;
 
-      const outbox = document.querySelectorAll('.mailbox')[1];
+      const outbox = document.getElementById('outbox-box');
       const newMail = document.createElement('div');
       newMail.className = 'mail';
-      newMail.innerHTML = `To: ${to}<br>件名: ${subject}<br>内容: ${body}`;
+      newMail.innerHTML = `To: ${to}<br>件名: ${subject}<br>内容: ${body}<br><small>送信日時: ${timestamp}</small>`;
       outbox.appendChild(newMail);
 
       if (to.toLowerCase() === "school@inac-kobe.com") {
         document.getElementById("specialPopup").classList.add("active");
 
-        const inbox = document.querySelectorAll('.mailbox')[0];
+        const inbox = document.getElementById('inbox-box');
         const confirmMail = document.createElement('div');
         confirmMail.className = 'mail';
-        confirmMail.innerHTML = `From: school@inac-kobe.com<br>件名: サッカースクール仮申し込み完了のお知らせ<br>内容: このたびはサッカースクールへの仮申し込みありがとうございます。<br>担当者より2営業日以内に本申込のご案内をお送りします。<br><br>--<br>INAC神戸レオネッサ スクール事務局`;
-        inbox.prepend(confirmMail);
+        confirmMail.innerHTML = `From: school@inac-kobe.com<br>件名: サッカースクール仮申し込み完了のお知らせ<br>内容: このたびはサッカースクールへの仮申し込みありがとうございます。<br>担当者より2営業日以内に本申込のご案内をお送りします。<br><br>--<br>INAC神戸レオネッサ スクール事務局<br><small>受信日時: ${timestamp}</small>`;
+        const inboxList = inbox.querySelectorAll('.mail');
+        if (inboxList.length > 0) {
+          inbox.insertBefore(confirmMail, inboxList[0]);
+        } else {
+          inbox.appendChild(confirmMail);
+        }
       }
     }
 
