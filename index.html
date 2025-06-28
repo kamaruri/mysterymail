@@ -4,17 +4,21 @@
   <meta charset="UTF-8">
   <title>父親メールアプリ</title>
   <style>
-    body { font-family: sans-serif; padding: 20px; background: #f9f9f9; }
+    body { font-family: sans-serif; padding: 20px; background: linear-gradient(to bottom, #ffffff, #87cefa); background-attachment: fixed; }
     .tab-buttons { margin-bottom: 10px; }
     .tab-buttons button { margin-right: 10px; padding: 10px 20px; }
     .tab-content { display: none; }
     .tab-content.active { display: block; }
     .mailbox { margin-bottom: 20px; }
     .mail { border: 1px solid #ccc; padding: 10px; margin-bottom: 5px; background: white; }
-    .popup, .confirm-dialog { display: none; position: fixed; top: 30%; left: 30%; padding: 20px; background: #fff8dc; border: 2px solid #f4a460; z-index: 1000; }
+    .popup, .confirm-dialog { display: none; position: fixed; top: 30%; left: 30%; padding: 30px;   font-size: 1.2em;background: #fff8dc; border: 2px solid #f4a460; z-index: 1000; }
     .popup.active, .confirm-dialog.active { display: block; }
     input, textarea { width: 100%; margin: 5px 0; }
     button.send { padding: 5px 10px; }
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+
   </style>
 </head>
 <body>
@@ -22,7 +26,7 @@
   <p><strong>あなたのメールアドレス：</strong> user.fake.7890@example-mail.test</p>
 
   <div class="tab-buttons">
-    <button onclick="showTab('send')">📤 メール送信</button>
+    <button onclick="showTab('send')">✉️ メール送信</button>
     <button onclick="showTab('inbox')">📥 受信履歴</button>
     <button onclick="showTab('outbox')">📤 送信履歴</button>
   </div>
