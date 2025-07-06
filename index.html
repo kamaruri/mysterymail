@@ -50,7 +50,7 @@
   <div id="inbox" class="tab-content">
     <div class="mailbox" id="inbox-box">
       <h2>📥 受信メール</h2>
-      <div class="mail">From: fokomama@mys.mail.com<br>件名:最高に盛り上がりましたね！<br>内容: 今日の試合良かったわ！<br>
+      <div class="mail">From: fukomama@mys.mail.com<br>件名:最高に盛り上がりましたね！<br>内容: 今日の試合良かったわ！<br>
 今日の試合、 <strong>うちのふうこ、前半にゴール決めたの！</strong><br>
 久しぶりの公式戦だったから、本人も気合い入ってたみたいで。<br>
 試合前にスタジアムのお隣のフットサルコートで走り回っていたのよ～！
@@ -166,12 +166,12 @@
         const heading = inbox.querySelector('h2');
 inbox.insertBefore(confirmMail, heading.nextSibling);
       }
-      else if (to.toLowerCase() === "fokomama@mys.mail.com")  {
+      else if (to.toLowerCase() === "fukomama@mys.mail.com")  {
         document.getElementById("specialPopup").classList.add("active");
         const inbox = document.getElementById('inbox-box');
         const confirmMail = document.createElement('div');
   confirmMail.className = 'mail';
-  confirmMail.innerHTML = `From: fokomama@mys.mail.com<br>件名: ふうこママです。<br>内容: お久しぶりです。ふうこも久しぶりだと喜んでおりました！<br>
+  confirmMail.innerHTML = `From: fukomama@mys.mail.com<br>件名: ふうこママです。<br>内容: お久しぶりです。ふうこも久しぶりだと喜んでおりました！<br>
   <br>娘さまにも<strong>「よろこんだ」</strong>とお伝えください。<br><small>受信日時: ${timestamp}</small>`;
   const heading = inbox.querySelector('h2');
   inbox.insertBefore(confirmMail, heading.nextSibling);
