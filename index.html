@@ -165,20 +165,14 @@ inbox.insertBefore(confirmMail, heading.nextSibling);
         document.getElementById("specialPopup").classList.add("active");
         const inbox = document.getElementById('inbox-box');
         const confirmMail = document.createElement('div');
-  infoMail.className = 'mail';
-  infoMail.innerHTML = `From: fokomama@mys.mail.com<br>件名: ふうこママです。<br>内容: お久しぶりです。ふうこも久しぶりだと喜んでおりました！<br>
+  confirmMail.className = 'mail';
+  confirmMail.innerHTML = `From: fokomama@mys.mail.com<br>件名: ふうこママです。<br>内容: お久しぶりです。ふうこも久しぶりだと喜んでおりました！<br>
   <br>娘さまにも<strong>「よろこんだ」</strong>とお伝えください。<br><small>受信日時: ${timestamp}</small>`;
   const heading = inbox.querySelector('h2');
-  inbox.insertBefore(infoMail, heading.nextSibling);
+  inbox.insertBefore(confirmMail, heading.nextSibling);
 }
-     else if (to.toLowerCase() === "okimama@mys.mail.com" ||
-  to.toLowerCase() === "hatsumama@mys.mail.com" ||
-  to.toLowerCase() === "yoshimama@mys.mail.com" ||
-  to.toLowerCase() === "misamama@mys.mail.com" ||
-  to.toLowerCase() === "ikumi@mys.mail.co") {
+     else if (to.toLowerCase() === "okimama@mys.mail.com" || to.toLowerCase() === "hatsumama@mys.mail.com" || to.toLowerCase() === "yoshimama@mys.mail.com" || to.toLowerCase() === "misamama@mys.mail.com" || to.toLowerCase() === "ikumi@mys.mail.co") {
         document.getElementById("ngPopup").classList.add("active");
-        const inbox = document.getElementById('inbox-box');
-        const confirmMail = document.createElement('div');").classList.add("active");
 }
 
     
