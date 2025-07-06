@@ -45,25 +45,25 @@
   <div id="inbox" class="tab-content">
     <div class="mailbox" id="inbox-box">
       <h2>📥 受信メール</h2>
-      <div class="mail">From: reply@newsletterplus.com<br>件名:最高に盛り上がりましたね！<br>内容: 今日の試合良かったわ！<br>
+      <div class="mail">From: fokomama@mys.mail.com<br>件名:最高に盛り上がりましたね！<br>内容: 今日の試合良かったわ！<br>
 今日の試合、 <strong>うちのふうこ、前半にゴール決めたの！</strong><br>
 久しぶりの公式戦だったから、本人も気合い入ってたみたいで。<br>
 試合前にスタジアムのお隣のフットサルコートで走り回っていたのよ～！
 <br><small>受信日時: 2025/9/20 23:10:42</small></div> 
-      <div class="mail">From: notice@booking-alerts.com<br>件名: いつも<strong>おきよ</strong>がお世話になってます！<br>内容: こんばんは、今日の試合の感想。<br>
+      <div class="mail">From: okimama@mys.mail.com<br>件名: いつも<strong>おきよ</strong>がお世話になってます！<br>内容: こんばんは、今日の試合の感想。<br>
 今日の試合、 <strong>ふうこちゃんが決めた直後に、娘の「おきよ」も勢いでゴール決めました！</strong><br>
 あの2人の連続得点、すごくリズムよかったですね。<br><small>受信日時: 2025/9/20 22:05:10</small></div>
-      <div class="mail">From: contact@school-events.org<br>件名: お知らせ：<strong>いくみ</strong>がやりました！<br>内容:今日の<strong>いくみ</strong>、前半終了間際に決めた1点に本人も満足してました。<br>
+      <div class="mail">From: ikumi@mys.mail.com<br>件名: お知らせ：<strong>いくみ</strong>がやりました！<br>内容:今日の<strong>いくみ</strong>、前半終了間際に決めた1点に本人も満足してました。<br>
 そのあとの、 <strong>はつめちゃん</strong>もゴールも素敵でしたね！初ゴールだそうです♪<br><small>受信日時: 2025/9/20 21:01:00</small></div>
-      <div class="mail">From: noreply@myfitness.net<br>件名: お疲れ様です！<br>内容:本日の試合はみんな頑張った！<br>
+      <div class="mail">From: hatsumama@mys.mail.com<br>件名: お疲れ様です！<br>内容:本日の試合はみんな頑張った！<br>
 <strong>はつめ</strong>strong>、今日は人生初のゴールを取れて本人もニコニコでした。<br>
  <strong>「この1点でふうこちゃんがやる気出して、ゴールしてくれたらいいな〜」</strong>って、ゴール直後に言ってたみたいなんです。<br>
 結果的に本当にその通りになって、2人で笑ってました。<br>仲良しですね〜♪<br><small>受信日時: 2025/9/20 20:00:00</small></div>
-      <div class="mail">From: hello@newsletter.com<br>件名: <strong>よしき</strong>ママです！<br>内容: 今日は<strong>よしき</strong>、 <strong>チーム最後の5点目も綺麗にアシストしてくれました♪</strong><br>
+      <div class="mail">From: yoshimama@mys.mail.com<br>件名: <strong>よしき</strong>ママです！<br>内容: 今日は<strong>よしき</strong>、 <strong>チーム最後の5点目も綺麗にアシストしてくれました♪</strong><br>
 今期の得点王になれたことも嬉しいけど、最後までチームプレーできたことに本人も誇り感じてるようです。<br>
 2面あるからどちらかは空いているだろうって、試合後も近くのフットサルコートに練習にいちゃいましたよ（笑）<br>
 <small>受信日時: 2025/6/20 19:30:00</small></div>
-      <div class="mail">From: hello@newsletter.com<br>件名: みさく母</strong>です！<br>内容: <strong>みさく</strong>も頑張った！ <strong>みさくはゴールキーパーとして</strong>一点も許さずにすごかったです！<br>
+      <div class="mail">From: misamama@mys.mail.com<br>件名: みさく母</strong>です！<br>内容: <strong>みさく</strong>も頑張った！ <strong>みさくはゴールキーパーとして</strong>一点も許さずにすごかったです！<br>
 ゴールの機会はなかったけど、セーブする方がカッコいいでしょ？って言ってました！<br>
 <small>受信日時: 2025/6/20 19:30:00</small></div>
       <div class="mail">From: info@events.jp<br>件名: <strong>さとう</strong>の取りすぎの防止！ <br>内容: 今月の無料体験イベントの情報<br>薄味でも美味しい健康料理会！<br><small>受信日時: 2024/12/20 18:00:00</small></div>
@@ -102,6 +102,11 @@
     <button onclick="closePopup()">閉じる</button>
   </div>
 
+    <div id="ngPopup" class="popup">
+    <strong>５人目の名前が違うようです。</strong><br>
+    <button onclick="closengPopup()">閉じる</button>
+  </div>
+  
   <div id="confirmPopup" class="confirm-dialog">
     <p>この内容で送信しますか？</p>
     <button onclick="sendMail(true)">はい</button>
@@ -149,7 +154,28 @@
         const heading = inbox.querySelector('h2');
 inbox.insertBefore(confirmMail, heading.nextSibling);
       }
+      else if (to.toLowerCase() === "fokomama@mys.mail.com")  {
+        document.getElementById("specialPopup").classList.add("active");
+        const inbox = document.getElementById('inbox-box');
+        const confirmMail = document.createElement('div');
+  infoMail.className = 'mail';
+  infoMail.innerHTML = `From: fokomama@mys.mail.com<br>件名: ふうこママです。<br>内容: お久しぶりです。ふうこも久しぶりだと喜んでおりました！<br>
+  <br>娘さまにも<strong>「よろこんだ」</strong>とお伝えください。<br><small>受信日時: ${timestamp}</small>`;
+  const heading = inbox.querySelector('h2');
+  inbox.insertBefore(infoMail, heading.nextSibling);
+}
+     else if (to.toLowerCase() === "okimama@mys.mail.comikumi@mys.mail.com" ||
+  to.toLowerCase() === "hatsumama@mys.mail.com" ||
+  to.toLowerCase() === "yoshimama@mys.mail.com" ||
+  to.toLowerCase() === "misamama@mys.mail.com" ||
+  to.toLowerCase() === "ikumi@mys.mail.co") {
+  document.getElementById(" {
+        document.getElementById("ngPopup").classList.add("active");
+        const inbox = document.getElementById('inbox-box');
+        const confirmMail = document.createElement('div');").classList.add("active");
+}
 
+    
       // 入力欄をリセット
       document.getElementById("to").value = "";
       document.getElementById("subject").value = "";
@@ -158,6 +184,9 @@ inbox.insertBefore(confirmMail, heading.nextSibling);
 
     function closePopup() {
       document.getElementById("specialPopup").classList.remove("active");
+    }
+    function closengPopup() {
+      document.getElementById("ngPopup").classList.remove("active");
     }
   </script>
 </body>
